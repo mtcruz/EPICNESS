@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3 uid="uid://ibw58h7hq5vq"]
+
+[ext_resource type="Script" path="res://Luta.gd" id="1_c3j2y"]
+[ext_resource type="PackedScene" uid="uid://dlftagrqi65gd" path="res://hero.tscn" id="2_7exsv"]
+[ext_resource type="PackedScene" uid="uid://do8chwfgic5y2" path="res://villain.tscn" id="3_0n41o"]
+
+[node name="Luta" type="Node2D"]
+script = ExtResource("1_c3j2y")
+
+[node name="Hero" parent="." instance=ExtResource("2_7exsv")]
+position = Vector2(110, 507)
+script = null
+
+[node name="Villain" parent="." instance=ExtResource("3_0n41o")]
+position = Vector2(1011, 507)
+
+[node name="Soco cruzado" type="Button" parent="."]
+offset_left = 60.0
+offset_top = 270.0
+offset_right = 171.0
+offset_bottom = 332.0
+text = "Soco cruzado"
+
+[node name="Empurrada" type="Button" parent="."]
+offset_left = 952.0
+offset_top = 341.0
+offset_right = 1063.0
+offset_bottom = 403.0
+text = "Empurrada"
+
+[node name="Cabecada" type="Button" parent="."]
+offset_left = 952.0
+offset_top = 270.0
+offset_right = 1063.0
+offset_bottom = 332.0
+text = "Cabeçada"
+
+[node name="Chute frontal" type="Button" parent="."]
+offset_left = 60.0
+offset_top = 341.0
+offset_right = 171.0
+offset_bottom = 403.0
+text = "Chute frontal"
+
+[node name="Turns" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 468.0
+offset_right = 675.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "23 / 25"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeroHealth" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 128.0
+offset_right = 271.0
+offset_bottom = 176.0
+theme_override_font_sizes/font_size = 32
+text = "Hero's health"
+
+[node name="HeroStamina" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 271.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 32
+text = "Hero's Stamina"
+
+[node name="VillainHealth" type="Label" parent="."]
+offset_left = 864.0
+offset_top = 128.0
+offset_right = 1090.0
+offset_bottom = 176.0
+theme_override_font_sizes/font_size = 32
+text = "Villain's health"
+
+[node name="VillainStamina" type="Label" parent="."]
+offset_left = 832.0
+offset_top = 192.0
+offset_right = 1088.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 32
+text = "Villain's Stamina"
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 468.0
+offset_top = 240.0
+offset_right = 675.0
+offset_bottom = 331.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="Soco cruzado" to="." method="_on_soco_cruzado_button_down"]
+[connection signal="button_down" from="Empurrada" to="." method="_on_empurrada_button_down"]
+[connection signal="button_down" from="Cabecada" to="." method="_on_cabecada_button_down"]
+[connection signal="button_down" from="Chute frontal" to="." method="_on_chute_frontal_button_down"]
