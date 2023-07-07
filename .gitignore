@@ -11,3 +11,7 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 data_*/
+graphical assets/GMTK Game Jam 2023 logo/gmtk-2022b.png
+graphical assets/GMTK Game Jam 2023 logo/gmtk-jam-2023.png
+graphical assets/GMTK Game Jam 2023 logo/jamlogo2023.png
+graphical assets/GMTK Game Jam 2023 logo/jamlogo2023.psd
