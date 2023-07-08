@@ -130,7 +130,7 @@ func _on_villain_move_3(): # Regenerate stamina
 # Ganhando e perdendo ##########################################################
 
 func check_gameover():
-	if epicness_current == epicness_max:
+	if epicness_current == epicness_max and health_villain == 0:
 		win()
 	elif health_hero == 0:
 		lose()
