@@ -8,39 +8,54 @@
 script = ExtResource("1_c3j2y")
 
 [node name="Hero" parent="." instance=ExtResource("2_7exsv")]
-position = Vector2(110, 507)
-script = null
+position = Vector2(384, 448)
+scale = Vector2(2, 2)
 
 [node name="Villain" parent="." instance=ExtResource("3_0n41o")]
-position = Vector2(1011, 507)
+position = Vector2(768, 448)
+scale = Vector2(2, 2)
 
-[node name="Soco cruzado" type="Button" parent="."]
-offset_left = 60.0
-offset_top = 270.0
-offset_right = 171.0
-offset_bottom = 332.0
-text = "Soco cruzado"
+[node name="hero_move_1" type="Button" parent="."]
+offset_left = 56.0
+offset_top = 320.0
+offset_right = 256.0
+offset_bottom = 382.0
+text = "Swift Thrust"
 
-[node name="Empurrada" type="Button" parent="."]
-offset_left = 952.0
-offset_top = 341.0
-offset_right = 1063.0
-offset_bottom = 403.0
-text = "Empurrada"
+[node name="hero_move_2" type="Button" parent="."]
+offset_left = 56.0
+offset_top = 416.0
+offset_right = 256.0
+offset_bottom = 478.0
+text = "Flaming Slash"
 
-[node name="Cabecada" type="Button" parent="."]
-offset_left = 952.0
-offset_top = 270.0
-offset_right = 1063.0
-offset_bottom = 332.0
-text = "Cabeçada"
+[node name="hero_move_3" type="Button" parent="."]
+offset_left = 56.0
+offset_top = 512.0
+offset_right = 256.0
+offset_bottom = 574.0
+text = "Healing Light"
 
-[node name="Chute frontal" type="Button" parent="."]
-offset_left = 60.0
-offset_top = 341.0
-offset_right = 171.0
-offset_bottom = 403.0
-text = "Chute frontal"
+[node name="villain_move_1" type="Button" parent="."]
+offset_left = 896.0
+offset_top = 320.0
+offset_right = 1096.0
+offset_bottom = 382.0
+text = "Dark Breath"
+
+[node name="villain_move_2" type="Button" parent="."]
+offset_left = 896.0
+offset_top = 416.0
+offset_right = 1096.0
+offset_bottom = 478.0
+text = "Dark Blast"
+
+[node name="villain_move_3" type="Button" parent="."]
+offset_left = 896.0
+offset_top = 512.0
+offset_right = 1096.0
+offset_bottom = 574.0
+text = "Absorb Darkness"
 
 [node name="Turns" type="Label" parent="."]
 anchors_preset = 5
@@ -56,51 +71,92 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HeroHealth" type="Label" parent="."]
-offset_left = 64.0
-offset_top = 128.0
-offset_right = 271.0
-offset_bottom = 176.0
+offset_left = 256.0
+offset_top = 272.0
+offset_right = 384.0
+offset_bottom = 320.0
 theme_override_font_sizes/font_size = 32
-text = "Hero's health"
+text = "health"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HeroStamina" type="Label" parent="."]
-offset_left = 64.0
-offset_top = 192.0
-offset_right = 271.0
-offset_bottom = 240.0
+offset_left = 385.0
+offset_top = 272.0
+offset_right = 512.0
+offset_bottom = 320.0
 theme_override_font_sizes/font_size = 32
-text = "Hero's Stamina"
+text = "stamina"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VillainHealth" type="Label" parent="."]
-offset_left = 864.0
-offset_top = 128.0
-offset_right = 1090.0
-offset_bottom = 176.0
+offset_left = 640.0
+offset_top = 272.0
+offset_right = 768.0
+offset_bottom = 320.0
 theme_override_font_sizes/font_size = 32
-text = "Villain's health"
+text = "health"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VillainStamina" type="Label" parent="."]
-offset_left = 832.0
-offset_top = 192.0
-offset_right = 1088.0
-offset_bottom = 240.0
+offset_left = 769.0
+offset_top = 272.0
+offset_right = 896.0
+offset_bottom = 320.0
 theme_override_font_sizes/font_size = 32
-text = "Villain's Stamina"
+text = "stamina"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Message" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 468.0
-offset_top = 240.0
-offset_right = 675.0
-offset_bottom = 331.0
+offset_left = 24.0
+offset_top = 80.0
+offset_right = 1128.0
+offset_bottom = 168.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
-[connection signal="button_down" from="Soco cruzado" to="." method="_on_soco_cruzado_button_down"]
-[connection signal="button_down" from="Empurrada" to="." method="_on_empurrada_button_down"]
-[connection signal="button_down" from="Cabecada" to="." method="_on_cabecada_button_down"]
-[connection signal="button_down" from="Chute frontal" to="." method="_on_chute_frontal_button_down"]
+[node name="SubMessage" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 63.0
+offset_top = 168.0
+offset_right = 1087.0
+offset_bottom = 213.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Reload" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 80.0
+offset_bottom = 47.0
+text = "Reload"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 80.0
+offset_bottom = 87.0
+text = "Quit"
+
+[connection signal="button_down" from="hero_move_1" to="." method="_on_hero_move_1"]
+[connection signal="button_down" from="hero_move_2" to="." method="_on_hero_move_2"]
+[connection signal="button_down" from="hero_move_3" to="." method="_on_hero_move_3"]
+[connection signal="button_down" from="villain_move_1" to="." method="_on_villain_move_1"]
+[connection signal="button_down" from="villain_move_2" to="." method="_on_villain_move_2"]
+[connection signal="button_down" from="villain_move_3" to="." method="_on_villain_move_3"]
+[connection signal="button_down" from="Reload" to="." method="_on_reload_button_down"]
+[connection signal="button_down" from="Quit" to="." method="_on_quit_button_down"]
