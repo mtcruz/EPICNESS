@@ -1,15 +1,15 @@
 extends Node2D
 
-@export var health_hero = 6
-@export var health_hero_max = 6
-@export var health_villain = 6
-@export var health_villain_max = 6
-@export var stamina_hero = 6
-@export var stamina_hero_max = 6
-@export var stamina_villain = 6
-@export var stamina_villain_max = 6
-@export var epicness_current = 0
-@export var epicness_max = 6
+var health_hero = 6
+var health_hero_max = 6
+var health_villain = 6
+var health_villain_max = 6
+var stamina_hero = 6
+var stamina_hero_max = 6
+var stamina_villain = 6
+var stamina_villain_max = 6
+var epicness_current = 0
+var epicness_max = 6
 var epicness_reached_peak = false
 var game_is_over = false
 var actor # the character making the action
