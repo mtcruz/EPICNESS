@@ -10,6 +10,7 @@ extends Node2D
 @export var stamina_villain_max = 6
 @export var epicness_current = 0
 @export var epicness_max = 6
+var epicness_reached_peak = false
 var game_is_over = false
 var actor # the character making the action
 var action_was_taken # a character made an action?
@@ -26,11 +27,18 @@ func _process(_delta):
 	$VillainHealth.set_text("🖤 %d" % [health_villain])
 	$HeroStamina.set_text("💪 %d" % [stamina_hero])
 	$VillainStamina.set_text("💪 %d" % [stamina_villain])
-	$Turns.set_text("%d / %d" % [epicness_current, epicness_max])
+	if epicness_current != 5:
+		$Turns.set_text("%d / %d" % [epicness_current, epicness_max])
+	elif epicness_current == 5 and not epicness_reached_peak:
+		$Turns.set_text("Max Epicness near")
+		$SubMessage.set_text("End the battle now!")
+	else:
+		$Turns.set_text("%d / %d" % [epicness_current, epicness_max])
 	check_stamina()
 	check_damage()
 	check_gameover()
 
+# Combate ######################################################################
 
 # Deactivates buttons in case there is not enough stamina
 func check_stamina(): # Beware, this is ugly[]
@@ -91,9 +99,63 @@ func check_damage():
 		health_damage = 0
 		stamina_cost = 0
 		stamina_damage = 0
-		epicness_current += 1
 		action_was_taken = false
 		actor = "none"
+		manage_epicness()
+
+
+# Manage epicness
+func manage_epicness():
+	epicness_current += 1
+	
+	if epicness_current == 6:
+		epicness_reached_peak = true
+		check_gameover()
+
+
+# Ganhando e perdendo ##########################################################
+
+func check_gameover():
+	if epicness_current == epicness_max and health_villain == 0:
+		win()
+	elif health_hero == 0:
+		lose()
+	elif health_villain == 0:
+		lose()
+	elif epicness_reached_peak:
+		lose()
+
+func win():
+	$Turns.set_text("MAX EPICNESS ACHIEVED")
+	$Message.text = str("You win!")
+	if health_hero == 0:
+		$SubMessage.text = str("The hero's sacrifice will not be forgotten!")
+	else:
+		$SubMessage.text = str("The villain was slain epically!")
+	game_is_over = true
+	disable_buttons()
+
+func lose(): # Differentes mensagens a depender de quem morreu
+	$Turns.set_text("The epic moment passed")
+	$Message.text = str("You lose...")
+	if epicness_reached_peak:
+		$SubMessage.text = str("The Monarch lost its interest in the battle")
+	elif epicness_current != epicness_max:
+		$SubMessage.text = str("The battle wasn't epic enough")
+	elif health_villain <= 0:
+		$SubMessage.text = str("The villain died before the battle got epic")
+	elif health_hero <= 0:
+		$SubMessage.text = str("The Hero died")
+	game_is_over = true
+	disable_buttons()
+
+func disable_buttons():
+	$hero_move_1.disabled = true
+	$hero_move_2.disabled = true
+	$hero_move_3.disabled = true
+	$villain_move_1.disabled = true
+	$villain_move_2.disabled = true
+	$villain_move_3.disabled = true
 
 
 # Habilidades de cada personagem ###############################################
@@ -125,39 +187,6 @@ func _on_villain_move_2(): # Kamikaze attack
 func _on_villain_move_3(): # Regenerate stamina
 	actor = "villain"
 	stamina_cost = -6
-
-
-# Ganhando e perdendo ##########################################################
-
-func check_gameover():
-	if epicness_current == epicness_max and health_villain == 0:
-		win()
-	elif health_hero == 0:
-		lose()
-	elif health_villain == 0:
-		lose()
-
-func win():
-	$Message.text = str("You win!")
-	$SubMessage.text = str("Villain was slain epically")
-	game_is_over = true
-	disable_buttons()
-
-func lose(): # Differentes mensagens a depender de quem morreu
-	if health_villain <= 0:
-		$SubMessage.text = str("The villain died before the battle got epic :(")
-	elif health_hero <= 0:
-		$SubMessage.text = str("The Hero died!")
-	game_is_over = true
-	disable_buttons()
-
-func disable_buttons():
-	$hero_move_1.disabled = true
-	$hero_move_2.disabled = true
-	$hero_move_3.disabled = true
-	$villain_move_1.disabled = true
-	$villain_move_2.disabled = true
-	$villain_move_3.disabled = true
 
 
 # Funcionalidades ##############################################################
