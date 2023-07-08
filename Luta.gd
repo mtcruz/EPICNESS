@@ -11,33 +11,14 @@ extends Node2D
 @export var epicness_current = 0
 @export var epicness_max = 6
 var game_is_over = false
+var actor # the character making the action
+var action_was_taken # a character made an action?
 
-# Habilidades de cada personagem ###############################################
-# Buttons for the Hero moveset 
-func _on_hero_move_1(): # Weak attack
-	health_villain -= 2
-	stamina_hero -= 1
-	epicness_current += 1
-func _on_hero_move_2(): # Strong attack
-	health_villain -= 4
-	stamina_hero -= 3
-	epicness_current += 1
-func _on_hero_move_3(): # Heal self
-	health_hero += 2
-	stamina_hero -= 2
-	epicness_current += 1
-
-# Buttons for the Villain moveset 
-func _on_villain_move_1(): # Strong attack
-	health_hero -= 3
-	stamina_villain -= 3
-	epicness_current += 1
-func _on_villain_move_2(): # Kamikaze attack
-	health_hero -= 5
-	health_villain -= 3
-	stamina_villain -= 6
-func _on_villain_move_3(): # Regenerate stamina
-	stamina_villain += 6
+# used for combat calculations
+var health_regen = 0
+var health_damage = 0
+var stamina_cost = 0
+var stamina_damage = 0
 
 # atualiza variáveis na tela a cada frame
 func _process(_delta):
@@ -46,7 +27,63 @@ func _process(_delta):
 	$HeroStamina.set_text("💪 %d" % [stamina_hero])
 	$VillainStamina.set_text("💪 %d" % [stamina_villain])
 	$Turns.set_text("%d / %d" % [epicness_current, epicness_max])
+	check_damage()
 	check_gameover()
+
+func check_damage():
+	if actor == "hero":
+		health_hero += health_regen
+		health_villain -= health_damage
+		stamina_hero -= stamina_cost
+		stamina_villain -= stamina_damage
+		action_was_taken = true
+	elif actor == "villain":
+		health_hero -= health_damage
+		health_villain += health_regen
+		stamina_hero -= stamina_damage
+		stamina_villain -= stamina_cost
+		action_was_taken = true
+	
+	# Reset combat variables if action was taken
+	if action_was_taken:
+		health_regen = 0
+		health_damage = 0
+		stamina_cost = 0
+		stamina_damage = 0
+		epicness_current += 1
+		action_was_taken = false
+		actor = "none"
+
+
+# Habilidades de cada personagem ###############################################
+# Buttons for the Hero moveset 
+func _on_hero_move_1(): # Weak attack
+	actor = "hero"
+	health_damage = 2
+	stamina_cost = 1
+func _on_hero_move_2(): # Strong attack
+	actor = "hero"
+	health_damage = 4
+	stamina_damage = 1
+	stamina_cost = 3
+func _on_hero_move_3(): # Heal self
+	actor = "hero"
+	health_regen = 2
+	stamina_cost = 2
+
+# Buttons for the Villain moveset 
+func _on_villain_move_1(): # Strong attack
+	actor = "villain"
+	health_damage = 3
+	stamina_cost = 3
+func _on_villain_move_2(): # Kamikaze attack
+	actor = "villain"
+	health_regen = -3
+	health_damage = 5
+	stamina_cost = 6
+func _on_villain_move_3(): # Regenerate stamina
+	actor = "villain"
+	stamina_cost -6
 
 
 # Ganhando e perdendo ##########################################################
