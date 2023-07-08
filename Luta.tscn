@@ -27,7 +27,7 @@ offset_left = 56.0
 offset_top = 416.0
 offset_right = 256.0
 offset_bottom = 478.0
-text = "Flaming Slash"
+text = "Holy Slash"
 
 [node name="hero_move_3" type="Button" parent="."]
 offset_left = 56.0
@@ -48,7 +48,7 @@ offset_left = 896.0
 offset_top = 416.0
 offset_right = 1096.0
 offset_bottom = 478.0
-text = "Dark Blast"
+text = "Deadly Blast"
 
 [node name="villain_move_3" type="Button" parent="."]
 offset_left = 896.0
