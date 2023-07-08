@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://do8chwfgic5y2" path="res://villain.tscn" id="3_0n41o"]
 
 [node name="Luta" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_c3j2y")
 
 [node name="Hero" parent="." instance=ExtResource("2_7exsv")]
@@ -62,8 +63,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 468.0
+offset_top = 184.0
 offset_right = 675.0
-offset_bottom = 91.0
+offset_bottom = 275.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "23 / 25"
@@ -115,11 +117,11 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 24.0
-offset_top = 80.0
 offset_right = 1128.0
-offset_bottom = 168.0
+offset_bottom = 88.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
+text = "Message"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -128,12 +130,43 @@ autowrap_mode = 2
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 63.0
-offset_top = 168.0
-offset_right = 1087.0
-offset_bottom = 213.0
+offset_left = 64.0
+offset_top = 96.0
+offset_right = 1088.0
+offset_bottom = 144.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
+text = "Sub message"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EpicnessTag" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 63.0
+offset_top = 256.0
+offset_right = 1087.0
+offset_bottom = 285.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 18
+text = "Epicness
+👑"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="DebugInfo" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 576.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 10
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -151,6 +184,66 @@ offset_top = 56.0
 offset_right = 80.0
 offset_bottom = 87.0
 text = "Quit"
+
+[node name="TransitionMessage" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 63.0
+offset_top = 344.0
+offset_right = 1103.0
+offset_bottom = 600.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="TransitionMessage"]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -344.0
+offset_right = 1049.0
+offset_bottom = 320.0
+color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[node name="Line1" type="Label" parent="TransitionMessage"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = -216.0
+offset_right = 968.0
+offset_bottom = -125.0
+theme_override_font_sizes/font_size = 64
+text = "Win"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line2" type="Label" parent="TransitionMessage"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = -56.0
+offset_right = 968.0
+offset_bottom = -1.0
+theme_override_font_sizes/font_size = 40
+text = "Something happened"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line3" type="Label" parent="TransitionMessage"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 72.0
+offset_right = 1024.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 32
+text = "What happened"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line4" type="Label" parent="TransitionMessage"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 168.0
+offset_right = 647.0
+offset_bottom = 216.0
+text = "Next Stage will begin in seconds"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="button_down" from="hero_move_1" to="." method="_on_hero_move_1"]
 [connection signal="button_down" from="hero_move_2" to="." method="_on_hero_move_2"]

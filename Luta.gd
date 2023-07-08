@@ -4,7 +4,7 @@ extends Node2D
 # Initialize variables #########################################################
 # Used for winning conditions
 var epicness_current = 0
-var epicness_max = 6
+var epicness_max
 var epicness_reached_peak = false
 var stage_is_over = false
 # used for combat calculations
@@ -23,25 +23,80 @@ var stamina_damage = 0
 var actor # the character making the action
 var action_was_taken # a character made an action?
 # Stage-related
+var current_stage = 1
+var stage_is_set = false
+# Timings
+var time_started
+var time_now = 0
+var time_transition = 0
+var time_elapsed = 0
+
+func _ready():
+	$TransitionMessage.visible = false
+	time_started = Time.get_unix_time_from_system()
 
 
 # atualiza variáveis na tela a cada frame
 func _process(_delta):
+	if stage_is_over:
+		current_stage += 1
+		stage_is_over  = false
+		enable_buttons()
+	if !stage_is_set:
+		set_stage()
+	time_now = Time.get_unix_time_from_system()
+	time_elapsed = time_now - time_started
+	var time_since_transition = time_elapsed - time_transition
+	if time_since_transition > 5:
+		$TransitionMessage.visible = false
+	$DebugInfo.set_text(str(" | current_stage: ", current_stage, \
+							" | stage_is_set: ", stage_is_set, \
+							" | epicness_current: ", epicness_current, \
+							" | epicness_max: ", epicness_max, \
+							" | epicness_reached_peak: ", epicness_reached_peak, \
+							" | stage_is_over: ", stage_is_over, \
+							"\n | time_elapsed: ", time_elapsed,
+							"\n | time_transition " , time_transition,
+							"\n | time_now " , time_now))
 	$HeroHealth.set_text("❤ %d" % [health_hero])
 	$VillainHealth.set_text("🖤 %d" % [health_villain])
 	$HeroStamina.set_text("💪 %d" % [stamina_hero])
 	$VillainStamina.set_text("💪 %d" % [stamina_villain])
-	if epicness_current != 5:
+	if epicness_current != (epicness_max - 1):
 		$Turns.set_text("%d / %d" % [epicness_current, epicness_max])
-	elif epicness_current == 5 and not epicness_reached_peak:
+	elif epicness_current == (epicness_max - 1) and not epicness_reached_peak:
 		$Turns.set_text("Max Epicness near")
 		$SubMessage.set_text("End the battle now!")
 	else:
 		$Turns.set_text("%d / %d" % [epicness_current, epicness_max])
-		$Message.set_text(current_goal)
 	check_stamina()
 	check_damage()
 	check_gameover()
+
+# The stages ###################################################################
+
+func set_stage():
+	if current_stage == 1:
+		epicness_max = 6
+		$Message.text = "Stage 1"
+		$SubMessage.text = "Reach max epicness with a final blow on the Villain"
+	
+	if current_stage == 2:
+		epicness_max = 2
+		$Message.text = "Stage 2"
+		$SubMessage.text = "Reach max epicness with a final blow on the Villain"
+	
+	health_hero = health_hero_max
+	stamina_hero = stamina_hero_max
+	health_villain = health_villain_max
+	stamina_villain = stamina_villain_max
+	epicness_current = 0
+	
+	stage_is_over = false
+	stage_is_set = true
+	enable_buttons()
+	
+
 
 # Combat #######################################################################
 
@@ -115,7 +170,6 @@ func manage_epicness():
 	
 	if epicness_current == 6:
 		epicness_reached_peak = true
-		check_gameover()
 
 
 # Winning and losing Ganhando e perdendo #######################################
@@ -131,28 +185,37 @@ func check_gameover():
 		lose()
 
 func win():
-	$Turns.set_text("MAX EPICNESS ACHIEVED")
-	$Message.text = str("You win!")
+	$TransitionMessage/Line2.set_text("MAX EPICNESS ACHIEVED")
+	$TransitionMessage/Line1.text = str("You win!")
 	if health_hero == 0:
-		$SubMessage.text = str("The hero's sacrifice will not be forgotten!")
+		$TransitionMessage/Line3.text = str("The hero's sacrifice will not be forgotten!")
 	else:
-		$SubMessage.text = str("The villain was slain epically!")
-	stage_is_over = true
-	disable_buttons()
+		$TransitionMessage/Line3.text = str("The villain was slain epically!")
+	end_stage()
 
 func lose(): # Differentes mensagens a depender de quem morreu
-	$Message.text = str("You lose...")
+	$TransitionMessage/Line1.text = str("You lose...")
 	if epicness_reached_peak:
-		$Turns.set_text("The epic moment passed")
-		$SubMessage.text = str("The Monarch lost its interest in the battle")
+		$TransitionMessage/Line2.set_text("The epic moment passed")
+		$TransitionMessage/Line3.text = str("The Monarch lost its interest in the battle")
 	elif epicness_current != epicness_max:
-		$SubMessage.text = str("The battle wasn't epic enough")
+		$TransitionMessage/Line3.text = str("The battle wasn't epic enough")
 	elif health_villain <= 0:
-		$SubMessage.text = str("The villain died before the battle got epic")
+		$TransitionMessage/Line3.text = str("The villain died before the battle got epic")
 	elif health_hero <= 0:
-		$SubMessage.text = str("The Hero died")
+		$TransitionMessage/Line3.text = str("The Hero died")
+	end_stage()
+
+func end_stage():
 	stage_is_over = true
+	epicness_reached_peak = false
+	stage_is_set = false
+	time_transition = time_elapsed
+	$TransitionMessage.visible = true
 	disable_buttons()
+	#$StageMenu.visible = true
+	#while 
+	#stage_menu_interacted
 
 func disable_buttons():
 	$hero_move_1.disabled = true
@@ -161,6 +224,15 @@ func disable_buttons():
 	$villain_move_1.disabled = true
 	$villain_move_2.disabled = true
 	$villain_move_3.disabled = true
+
+
+func enable_buttons():
+	$hero_move_1.disabled = false
+	$hero_move_2.disabled = false
+	$hero_move_3.disabled = false
+	$villain_move_1.disabled = false
+	$villain_move_2.disabled = false
+	$villain_move_3.disabled = false
 
 
 # Character movesets ###########################################################
