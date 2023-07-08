@@ -31,24 +31,29 @@ var time_now = 0
 var time_transition = 0
 var time_elapsed = 0
 
+
 func _ready():
 	$TransitionMessage.visible = false
 	time_started = Time.get_unix_time_from_system()
 
 
-# atualiza variáveis na tela a cada frame
 func _process(_delta):
-	if stage_is_over:
+	
+	if stage_is_over: # se a fase acabou, vamos para a próxima
 		current_stage += 1
 		stage_is_over  = false
 		enable_buttons()
-	if !stage_is_set:
+	if !stage_is_set: # Se a fase não está configurada, o fazemos
 		set_stage()
+	
+	# Essa parte serve para tirar a mensagem de fim de estágio
 	time_now = Time.get_unix_time_from_system()
 	time_elapsed = time_now - time_started
 	var time_since_transition = time_elapsed - time_transition
 	if time_since_transition > 5:
 		$TransitionMessage.visible = false
+	
+	# atualiza variáveis na tela a cada frame
 	$DebugInfo.set_text(str(" | current_stage: ", current_stage, \
 							" | stage_is_set: ", stage_is_set, \
 							" | epicness_current: ", epicness_current, \
@@ -69,6 +74,8 @@ func _process(_delta):
 		$SubMessage.set_text("End the battle now!")
 	else:
 		$Turns.set_text("%d / %d" % [epicness_current, epicness_max])
+	
+	# Roda funções de atualização
 	check_stamina()
 	check_damage()
 	check_gameover()
