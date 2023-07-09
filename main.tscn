@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cukidb2j0xeg7"]
+[gd_scene load_steps=5 format=3 uid="uid://cukidb2j0xeg7"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_s6hq5"]
 [ext_resource type="Texture2D" uid="uid://cm15kyjablgcd" path="res://game assets/EPICNESS icon.png" id="2_dd0a7"]
+[ext_resource type="AudioStream" uid="uid://sjpyeajpdnpn" path="res://game assets/Of Far Different Nature - Adventure Begins (CC-BY).ogg" id="3_et4v6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gaavy"]
 
@@ -60,6 +61,11 @@ text = "EPICNESS"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_et4v6")
+volume_db = -16.838
+autoplay = true
 
 [connection signal="button_down" from="Play" to="." method="_on_play_button_down"]
 [connection signal="button_down" from="Quit" to="." method="_on_quit_button_down"]

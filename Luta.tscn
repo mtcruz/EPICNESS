@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ibw58h7hq5vq"]
+[gd_scene load_steps=26 format=3 uid="uid://ibw58h7hq5vq"]
 
 [ext_resource type="Script" path="res://Luta.gd" id="1_c3j2y"]
 [ext_resource type="PackedScene" uid="uid://dlftagrqi65gd" path="res://hero.tscn" id="2_7exsv"]
@@ -21,6 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://d1ylqcya55xgk" path="res://game assets/Icon_health_t.png" id="15_wwhq2"]
 [ext_resource type="AudioStream" uid="uid://vxbfdvl3qhj7" path="res://game assets/sfx_explosion_edit.wav" id="16_iif5o"]
 [ext_resource type="AudioStream" uid="uid://cglw3rmn2cgle" path="res://game assets/sfx_absorb_edit.wav" id="20_jxqr6"]
+[ext_resource type="AudioStream" uid="uid://cmhsgm11l12mv" path="res://game assets/Of Far Different Nature - Clash (CC-BY).ogg" id="22_q1i8d"]
+[ext_resource type="AudioStream" uid="uid://b83bqu6gm6ucw" path="res://game assets/SFX_win.wav" id="23_fvfd1"]
+[ext_resource type="AudioStream" uid="uid://bbegf7jvgmxyd" path="res://game assets/SFX_lose.wav" id="24_pnlrg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2e5rq"]
 
@@ -664,6 +667,20 @@ offset_bottom = 216.0
 text = "Next Stage will begin in 5 seconds"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_q1i8d")
+volume_db = -16.838
+autoplay = true
+
+[node name="WinSFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(135, 288)
+stream = ExtResource("23_fvfd1")
+
+[node name="LoseSFX" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(135, 288)
+stream = ExtResource("24_pnlrg")
+volume_db = 14.856
 
 [connection signal="button_down" from="HeroButtons/hero_move_1" to="." method="_on_hero_move_1"]
 [connection signal="button_down" from="HeroButtons/hero_move_2" to="." method="_on_hero_move_2"]

@@ -219,7 +219,7 @@ func win():
 		$TransitionMessage/Line2.set_text("Thanks for playing")
 		$TransitionMessage/Line3.text = str("The game will now close")
 		$TransitionMessage/Line4.text = str("")
-		
+	$WinSFX.play()
 	end_stage()
 
 
@@ -239,6 +239,7 @@ func lose(): # Differentes mensagens a depender de quem morreu
 		$TransitionMessage/Line2.text = str("The Hero died")
 		$TransitionMessage/Line3.text = str("")
 	$TransitionMessage/Line4.text = str("Game Over. The game will restart in 5 seconds")
+	$LoseSFX.play()
 	game_over = true
 	end_stage()
 
@@ -248,6 +249,7 @@ func end_stage():
 	stage_is_set = false
 	time_transition = time_elapsed
 	$TransitionMessage.visible = true
+	
 	disable_buttons()
 	#$StageMenu.visible = true
 	#while 
