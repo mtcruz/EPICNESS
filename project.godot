@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="GMTK Game Jam 2023"
+config/name="EPICNESS"
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://game assets/epicness ico.ico"
 
 [rendering]
 
