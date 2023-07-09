@@ -16,3 +16,5 @@ graphical assets/GMTK Game Jam 2023 logo/gmtk-jam-2023.png
 graphical assets/GMTK Game Jam 2023 logo/jamlogo2023.png
 graphical assets/GMTK Game Jam 2023 logo/jamlogo2023.psd
 *.import
+
+asset_archive/*

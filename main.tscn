@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cukidb2j0xeg7"]
+[gd_scene load_steps=4 format=3 uid="uid://cukidb2j0xeg7"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_s6hq5"]
+[ext_resource type="Texture2D" uid="uid://cm15kyjablgcd" path="res://game assets/EPICNESS icon.png" id="2_dd0a7"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gaavy"]
 
@@ -12,6 +13,11 @@ material = SubResource("CanvasItemMaterial_gaavy")
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
+
+[node name="EpicnessIcon" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 0.34902)
+position = Vector2(576, 320)
+texture = ExtResource("2_dd0a7")
 
 [node name="Play" type="Button" parent="."]
 offset_left = 192.0
@@ -44,6 +50,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Title" type="Label" parent="."]
+modulate = Color(1, 1, 0, 1)
 offset_left = 64.0
 offset_top = 40.0
 offset_right = 1088.0

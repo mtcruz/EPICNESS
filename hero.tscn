@@ -1,15 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlftagrqi65gd"]
+[gd_scene load_steps=6 format=3 uid="uid://dlftagrqi65gd"]
 
-[ext_resource type="Texture2D" uid="uid://dysr4mqcfyigy" path="res://graphical assets/Lorc RPG icons/Icon.1_05.png" id="1_4gn11"]
+[ext_resource type="Shader" path="res://hero.gdshader" id="1_sqs26"]
+[ext_resource type="Texture2D" uid="uid://3y48a7gcxro5" path="res://game assets/Char_Hero.png" id="2_odd7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ev37s"]
 size = Vector2(130, 130)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_47q7g"]
+shader = ExtResource("1_sqs26")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d6hha"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_4gn11")
+"texture": ExtResource("2_odd7v")
 }],
 "loop": true,
 "name": &"default",
@@ -23,6 +27,9 @@ shape = SubResource("RectangleShape2D_ev37s")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+material = SubResource("ShaderMaterial_47q7g")
 scale = Vector2(0.295, 0.295)
 sprite_frames = SubResource("SpriteFrames_d6hha")
 metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]

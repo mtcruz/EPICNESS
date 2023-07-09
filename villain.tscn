@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://do8chwfgic5y2"]
 
-[ext_resource type="Texture2D" uid="uid://dfk6vf7gfl0j" path="res://graphical assets/Lorc RPG icons/Icon.5_02.png" id="1_ukp2c"]
+[ext_resource type="Texture2D" uid="uid://cpulmtbxngdtq" path="res://game assets/Char_villain.png" id="1_8a33c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6d7fl"]
 size = Vector2(130, 130)
@@ -9,7 +9,7 @@ size = Vector2(130, 130)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ukp2c")
+"texture": ExtResource("1_8a33c")
 }],
 "loop": true,
 "name": &"default",

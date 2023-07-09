@@ -69,10 +69,10 @@ func _process(_delta):
 							"\n | time_transition: " , time_transition,
 							"\n | time_now: " , time_now, \
 							" | last_actor: ", last_actor))
-	$HeroHealth.set_text("❤ %d" % [health_hero])
-	$VillainHealth.set_text("🖤 %d" % [health_villain])
-	$HeroStamina.set_text("💪 %d" % [stamina_hero])
-	$VillainStamina.set_text("💪 %d" % [stamina_villain])
+	$HeroHealth.set_text(" %d" % [health_hero])
+	$VillainHealth.set_text(" %d" % [health_villain])
+	$HeroStamina.set_text(" %d" % [stamina_hero])
+	$VillainStamina.set_text(" %d" % [stamina_villain])
 	if epicness_current != (epicness_max - 1):
 		$Turns.set_text("%d / %d" % [epicness_current, epicness_max])
 	elif epicness_current == (epicness_max - 1) and not epicness_reached_peak:

@@ -1,21 +1,62 @@
-[gd_scene load_steps=5 format=3 uid="uid://ibw58h7hq5vq"]
+[gd_scene load_steps=17 format=3 uid="uid://ibw58h7hq5vq"]
 
 [ext_resource type="Script" path="res://Luta.gd" id="1_c3j2y"]
 [ext_resource type="PackedScene" uid="uid://dlftagrqi65gd" path="res://hero.tscn" id="2_7exsv"]
 [ext_resource type="PackedScene" uid="uid://do8chwfgic5y2" path="res://villain.tscn" id="3_0n41o"]
-[ext_resource type="Texture2D" uid="uid://dm8q1ftrvjked" path="res://graphical assets/Lorc RPG icons/Icon.1_09.png" id="4_lhyi7"]
+[ext_resource type="Texture2D" uid="uid://dv66dqfvymged" path="res://game assets/Icon.6_26.png" id="4_f1ogt"]
+[ext_resource type="Texture2D" uid="uid://bhh3bm0qyi3k8" path="res://game assets/Icon_Damage_t.png" id="5_gbxq0"]
+[ext_resource type="Texture2D" uid="uid://bcwg6d24m0ei3" path="res://game assets/Icon.3_24.png" id="5_iyrs7"]
+[ext_resource type="Texture2D" uid="uid://hw7gcr0i0etf" path="res://game assets/Icon_Stamina_t.png" id="6_nhtgo"]
+[ext_resource type="Texture2D" uid="uid://ct4vvd3j51chx" path="res://game assets/Icon.6_49.png" id="7_ifxy2"]
+[ext_resource type="Texture2D" uid="uid://b7d3a20ge0lb8" path="res://game assets/Icons8_09.png" id="8_jd8vp"]
+[ext_resource type="Texture2D" uid="uid://1vlgptfdi88b" path="res://game assets/Icon_heal_t.png" id="9_5lwfx"]
+[ext_resource type="Texture2D" uid="uid://chsha6jt3bu13" path="res://game assets/Icon.4_29.png" id="9_t5ody"]
+[ext_resource type="Texture2D" uid="uid://cm15kyjablgcd" path="res://game assets/EPICNESS icon.png" id="11_u2kvt"]
+[ext_resource type="Texture2D" uid="uid://icmm41tjg5f6" path="res://game assets/Icon.4_38.png" id="12_n1hy3"]
+[ext_resource type="Texture2D" uid="uid://c0euyq7if0tia" path="res://game assets/Icon_heal_stamina_t.png" id="13_kbqhc"]
+[ext_resource type="Texture2D" uid="uid://d1ylqcya55xgk" path="res://game assets/Icon_health_t.png" id="15_wwhq2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2e5rq"]
 
 [node name="Luta" type="Node2D"]
 process_mode = 1
 script = ExtResource("1_c3j2y")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("CanvasItemMaterial_2e5rq")
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
 [node name="Hero" parent="." instance=ExtResource("2_7exsv")]
+modulate = Color(0.0196078, 0.560784, 1, 1)
 position = Vector2(384, 448)
 scale = Vector2(2, 2)
 
+[node name="IconHealthT" type="Sprite2D" parent="Hero"]
+position = Vector2(-43.5, -75.5)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("15_wwhq2")
+
+[node name="IconStaminaT2" type="Sprite2D" parent="Hero"]
+position = Vector2(20, -76)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_nhtgo")
+
 [node name="Villain" parent="." instance=ExtResource("3_0n41o")]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
 position = Vector2(768, 448)
 scale = Vector2(2, 2)
+
+[node name="IconHealthT2" type="Sprite2D" parent="Villain"]
+position = Vector2(-44, -76)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("15_wwhq2")
+
+[node name="IconStaminaT" type="Sprite2D" parent="Villain"]
+position = Vector2(20, -76)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_nhtgo")
 
 [node name="HeroButtons" type="Control" parent="."]
 layout_mode = 3
@@ -29,7 +70,32 @@ offset_left = 56.0
 offset_top = 320.0
 offset_right = 256.0
 offset_bottom = 382.0
-text = "Swift Thrust"
+text = "Swift Thrust  "
+alignment = 2
+
+[node name="Icon626" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
+position = Vector2(80, 352)
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("4_f1ogt")
+
+[node name="IconDamageT" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(234, 372)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT2" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(212, 372)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconStaminaT16" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(234, 395)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
 
 [node name="hero_move_2" type="Button" parent="HeroButtons"]
 layout_mode = 0
@@ -37,7 +103,62 @@ offset_left = 56.0
 offset_top = 416.0
 offset_right = 256.0
 offset_bottom = 478.0
-text = "Holy Slash"
+text = "Holy Slash  "
+alignment = 2
+
+[node name="Icon324" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
+position = Vector2(81, 447)
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("5_iyrs7")
+
+[node name="IconDamageT3" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(234, 467.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT4" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(212, 467.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT5" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(190.16, 467.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT6" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(168.16, 467.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconStaminaT" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(235.16, 492.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT2" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(191.16, 492.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT7" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(146, 467)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT3" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(213.16, 492.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
 
 [node name="hero_move_3" type="Button" parent="HeroButtons"]
 layout_mode = 0
@@ -45,7 +166,44 @@ offset_left = 56.0
 offset_top = 512.0
 offset_right = 256.0
 offset_bottom = 574.0
-text = "Healing Light"
+text = "Healing Light  "
+alignment = 2
+
+[node name="Icons809" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
+position = Vector2(80, 544)
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("8_jd8vp")
+
+[node name="IconHealT" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(235, 566)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("9_5lwfx")
+
+[node name="IconHealT2" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(211, 566)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("9_5lwfx")
+
+[node name="IconStaminaT4" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(235.16, 587.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT5" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(187.16, 587.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT6" type="Sprite2D" parent="HeroButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(211.16, 587.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
 
 [node name="VillainButtons" type="Control" parent="."]
 layout_mode = 3
@@ -59,7 +217,50 @@ offset_left = 896.0
 offset_top = 320.0
 offset_right = 1096.0
 offset_bottom = 382.0
-text = "Dark Breath"
+text = "  Dark Breath"
+alignment = 0
+
+[node name="Icon649" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
+position = Vector2(1072, 352)
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("7_ifxy2")
+
+[node name="IconDamageT7" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(959, 372.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT8" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(937, 372.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT9" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(915.16, 372.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconStaminaT7" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(960.16, 396.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT8" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(915.16, 396.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT9" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(938.16, 396.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
 
 [node name="villain_move_2" type="Button" parent="VillainButtons"]
 layout_mode = 0
@@ -67,7 +268,98 @@ offset_left = 896.0
 offset_top = 416.0
 offset_right = 1096.0
 offset_bottom = 478.0
-text = "Deadly Blast"
+text = "  Deadly Blast"
+alignment = 0
+
+[node name="Icon429" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
+position = Vector2(1072, 448)
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("9_t5ody")
+
+[node name="IconDamageT10" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(975, 467.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT14" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(997, 467)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT11" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(953, 467.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT15" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(1066.16, 492.32)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT16" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(1088.16, 492.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT17" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(1044.16, 492.32)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT12" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(931.16, 467.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconDamageT13" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.0196078, 0.560784, 1, 1)
+position = Vector2(909.16, 467.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_gbxq0")
+
+[node name="IconStaminaT10" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(954.16, 491.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT11" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(909.16, 491.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT12" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(932.16, 491.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT13" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(1022.16, 491.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT14" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(976.16, 491.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
+
+[node name="IconStaminaT15" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(999.16, 491.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("6_nhtgo")
 
 [node name="villain_move_3" type="Button" parent="VillainButtons"]
 layout_mode = 0
@@ -75,9 +367,53 @@ offset_left = 896.0
 offset_top = 512.0
 offset_right = 1096.0
 offset_bottom = 574.0
-text = "Absorb Darkness"
+text = "  Absorb Darkness"
+alignment = 0
+
+[node name="Icon464" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
+position = Vector2(1072, 544)
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("12_n1hy3")
+
+[node name="IconHealStaminaT" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(912.16, 566.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("13_kbqhc")
+
+[node name="IconHealStaminaT2" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(936.16, 566.16)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("13_kbqhc")
+
+[node name="IconHealStaminaT3" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(958.32, 566.32)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("13_kbqhc")
+
+[node name="IconHealStaminaT4" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(982.32, 566.32)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("13_kbqhc")
+
+[node name="IconHealStaminaT5" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(1004.32, 566.32)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("13_kbqhc")
+
+[node name="IconHealStaminaT6" type="Sprite2D" parent="VillainButtons"]
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+position = Vector2(1028.32, 566.32)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("13_kbqhc")
 
 [node name="Turns" type="Label" parent="."]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -92,43 +428,43 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HeroHealth" type="Label" parent="."]
-offset_left = 256.0
+modulate = Color(0.0196078, 0.560784, 1, 1)
+offset_left = 320.0
 offset_top = 272.0
 offset_right = 384.0
 offset_bottom = 320.0
 theme_override_font_sizes/font_size = 32
-text = "health"
-horizontal_alignment = 1
+text = "h"
 vertical_alignment = 1
 
 [node name="HeroStamina" type="Label" parent="."]
-offset_left = 385.0
+modulate = Color(0.0196078, 0.560784, 1, 1)
+offset_left = 448.0
 offset_top = 272.0
 offset_right = 512.0
 offset_bottom = 320.0
 theme_override_font_sizes/font_size = 32
-text = "stamina"
-horizontal_alignment = 1
+text = "st"
 vertical_alignment = 1
 
 [node name="VillainHealth" type="Label" parent="."]
-offset_left = 640.0
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+offset_left = 704.0
 offset_top = 272.0
 offset_right = 768.0
 offset_bottom = 320.0
 theme_override_font_sizes/font_size = 32
-text = "health"
-horizontal_alignment = 1
+text = "h"
 vertical_alignment = 1
 
 [node name="VillainStamina" type="Label" parent="."]
-offset_left = 769.0
+modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
+offset_left = 832.0
 offset_top = 272.0
 offset_right = 896.0
 offset_bottom = 320.0
 theme_override_font_sizes/font_size = 32
-text = "stamina"
-horizontal_alignment = 1
+text = "st"
 vertical_alignment = 1
 
 [node name="Message" type="Label" parent="."]
@@ -136,8 +472,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 24.0
+offset_top = 37.0
 offset_right = 1128.0
-offset_bottom = 88.0
+offset_bottom = 125.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "Message"
@@ -150,9 +487,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 64.0
-offset_top = 96.0
+offset_top = 142.0
 offset_right = 1088.0
-offset_bottom = 144.0
+offset_bottom = 190.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "Sub message"
@@ -160,24 +497,32 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="EpicnessIcon" type="Sprite2D" parent="."]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
+position = Vector2(575, 320)
+scale = Vector2(0.185484, 0.185484)
+texture = ExtResource("11_u2kvt")
+
 [node name="EpicnessTag" type="Label" parent="."]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 63.0
+offset_left = 64.0
 offset_top = 256.0
-offset_right = 1087.0
+offset_right = 1088.0
 offset_bottom = 285.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 18
 text = "Epicness
-👑"
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
 
 [node name="DebugInfo" type="Label" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -212,10 +557,23 @@ offset_right = 144.0
 offset_bottom = 127.0
 text = "Quit"
 
-[node name="Icon109" type="Sprite2D" parent="."]
-position = Vector2(72, 496)
-scale = Vector2(0.06, 0.06)
-texture = ExtResource("4_lhyi7")
+[node name="Button" type="Button" parent="."]
+offset_left = 960.0
+offset_top = 16.0
+offset_right = 1137.0
+offset_bottom = 80.0
+tooltip_text = "TIP:
+Plan your moves so you can reach maximum EPICNESS on a move on which  the Hero kills the Villain.
+
+RULES:
+- The Hero must defeat the Villain at all times.
+- Both the Hero and the Villain have 3 moves each. Each move has different effects.
+- Each move adds one the the EPICNESS counter.
+- The battle must end precisely when the EPICNESS reaches its maximum. 
+"
+theme_override_font_sizes/font_size = 20
+text = "Hover mouse 
+here to get help"
 
 [node name="TransitionMessage" type="Control" parent="."]
 visible = false
@@ -236,6 +594,7 @@ offset_bottom = 320.0
 color = Color(0.298039, 0.298039, 0.298039, 1)
 
 [node name="Line1" type="Label" parent="TransitionMessage"]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
 layout_mode = 0
 offset_left = 72.0
 offset_top = -216.0
@@ -247,6 +606,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Line2" type="Label" parent="TransitionMessage"]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
 layout_mode = 0
 offset_left = 72.0
 offset_top = -56.0
@@ -258,6 +618,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Line3" type="Label" parent="TransitionMessage"]
+modulate = Color(0.960784, 0.980392, 0.266667, 1)
 layout_mode = 0
 offset_left = 9.0
 offset_top = 72.0
@@ -277,24 +638,6 @@ offset_bottom = 216.0
 text = "Next Stage will begin in 5 seconds"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Button" type="Button" parent="."]
-offset_left = 960.0
-offset_top = 16.0
-offset_right = 1137.0
-offset_bottom = 80.0
-tooltip_text = "TIP:
-Plan your moves so you can reach maximum EPICNESS on a move on which  the Hero kills the Villain.
-
-RULES:
-- The Hero must defeat the Villain at all times.
-- Both the Hero and the Villain have 3 moves each. Each move has different effects.
-- Each move adds one the the EPICNESS counter.
-- The battle must end precisely when the EPICNESS reaches its maximum. 
-"
-theme_override_font_sizes/font_size = 20
-text = "Hover mouse 
-here to get help"
 
 [connection signal="button_down" from="HeroButtons/hero_move_1" to="." method="_on_hero_move_1"]
 [connection signal="button_down" from="HeroButtons/hero_move_2" to="." method="_on_hero_move_2"]
