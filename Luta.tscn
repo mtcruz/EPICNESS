@@ -586,6 +586,7 @@ offset_bottom = 600.0
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="TransitionMessage"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = -63.0
 offset_top = -344.0
