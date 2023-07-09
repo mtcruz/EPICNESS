@@ -218,6 +218,7 @@ scale = Vector2(0.06, 0.06)
 texture = ExtResource("4_lhyi7")
 
 [node name="TransitionMessage" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 63.0
@@ -276,6 +277,24 @@ offset_bottom = 216.0
 text = "Next Stage will begin in 5 seconds"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 960.0
+offset_top = 16.0
+offset_right = 1137.0
+offset_bottom = 80.0
+tooltip_text = "TIP:
+Plan your moves so you can reach maximum EPICNESS on a move on which  the Hero kills the Villain.
+
+RULES:
+- The Hero must defeat the Villain at all times.
+- Both the Hero and the Villain have 3 moves each. Each move has different effects.
+- Each move adds one the the EPICNESS counter.
+- The battle must end precisely when the EPICNESS reaches its maximum. 
+"
+theme_override_font_sizes/font_size = 20
+text = "Hover mouse 
+here to get help"
 
 [connection signal="button_down" from="HeroButtons/hero_move_1" to="." method="_on_hero_move_1"]
 [connection signal="button_down" from="HeroButtons/hero_move_2" to="." method="_on_hero_move_2"]

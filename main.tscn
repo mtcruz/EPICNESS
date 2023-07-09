@@ -1,23 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://cukidb2j0xeg7"]
+[gd_scene load_steps=3 format=3 uid="uid://cukidb2j0xeg7"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_s6hq5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gaavy"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_s6hq5")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("CanvasItemMaterial_gaavy")
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
 [node name="Play" type="Button" parent="."]
 offset_left = 192.0
-offset_top = 448.0
+offset_top = 512.0
 offset_right = 384.0
 offset_bottom = 575.0
+theme_override_font_sizes/font_size = 30
 text = "Play"
 
 [node name="Quit" type="Button" parent="."]
 offset_left = 768.0
-offset_top = 448.0
+offset_top = 512.0
 offset_right = 960.0
 offset_bottom = 575.0
+theme_override_font_sizes/font_size = 30
 text = "Quit"
+
+[node name="Description" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 168.0
+offset_right = 1088.0
+offset_bottom = 509.0
+theme_override_font_sizes/font_size = 20
+text = "You are a bard tasked by the Monarch to tell the tales about epic fights between Heros and Villains. You must play both the roles of the villain and the hero, alternating between them to tell the most epic battles. 
+
+Of course, the Hero must defeat the Villain at all times, but the battle must be epic.  Both the Hero and the Villain have 3 moves each. Each move has different effects but, critically, adds one the the EPICNESS counter. Each battle has to finish precisely when the EPICNESS reaches its maximum, otherwise the Monarch will lose its interest.
+
+Choose your moves wisely and achieve maximum EPICNESS!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Title" type="Label" parent="."]
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 1088.0
+offset_bottom = 131.0
+theme_override_font_sizes/font_size = 64
+text = "EPICNESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="button_down" from="Play" to="." method="_on_play_button_down"]
 [connection signal="button_down" from="Quit" to="." method="_on_quit_button_down"]
