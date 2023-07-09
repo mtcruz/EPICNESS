@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ibw58h7hq5vq"]
+[gd_scene load_steps=5 format=3 uid="uid://ibw58h7hq5vq"]
 
 [ext_resource type="Script" path="res://Luta.gd" id="1_c3j2y"]
 [ext_resource type="PackedScene" uid="uid://dlftagrqi65gd" path="res://hero.tscn" id="2_7exsv"]
 [ext_resource type="PackedScene" uid="uid://do8chwfgic5y2" path="res://villain.tscn" id="3_0n41o"]
+[ext_resource type="Texture2D" uid="uid://dm8q1ftrvjked" path="res://graphical assets/Lorc RPG icons/Icon.1_09.png" id="4_lhyi7"]
 
 [node name="Luta" type="Node2D"]
 process_mode = 1
@@ -16,42 +17,60 @@ scale = Vector2(2, 2)
 position = Vector2(768, 448)
 scale = Vector2(2, 2)
 
-[node name="hero_move_1" type="Button" parent="."]
+[node name="HeroButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="hero_move_1" type="Button" parent="HeroButtons"]
+layout_mode = 0
 offset_left = 56.0
 offset_top = 320.0
 offset_right = 256.0
 offset_bottom = 382.0
 text = "Swift Thrust"
 
-[node name="hero_move_2" type="Button" parent="."]
+[node name="hero_move_2" type="Button" parent="HeroButtons"]
+layout_mode = 0
 offset_left = 56.0
 offset_top = 416.0
 offset_right = 256.0
 offset_bottom = 478.0
 text = "Holy Slash"
 
-[node name="hero_move_3" type="Button" parent="."]
+[node name="hero_move_3" type="Button" parent="HeroButtons"]
+layout_mode = 0
 offset_left = 56.0
 offset_top = 512.0
 offset_right = 256.0
 offset_bottom = 574.0
 text = "Healing Light"
 
-[node name="villain_move_1" type="Button" parent="."]
+[node name="VillainButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="villain_move_1" type="Button" parent="VillainButtons"]
+layout_mode = 0
 offset_left = 896.0
 offset_top = 320.0
 offset_right = 1096.0
 offset_bottom = 382.0
 text = "Dark Breath"
 
-[node name="villain_move_2" type="Button" parent="."]
+[node name="villain_move_2" type="Button" parent="VillainButtons"]
+layout_mode = 0
 offset_left = 896.0
 offset_top = 416.0
 offset_right = 1096.0
 offset_bottom = 478.0
 text = "Deadly Blast"
 
-[node name="villain_move_3" type="Button" parent="."]
+[node name="villain_move_3" type="Button" parent="VillainButtons"]
+layout_mode = 0
 offset_left = 896.0
 offset_top = 512.0
 offset_right = 1096.0
@@ -174,16 +193,29 @@ autowrap_mode = 2
 [node name="Reload" type="Button" parent="."]
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 80.0
+offset_right = 142.0
 offset_bottom = 47.0
-text = "Reload"
+text = "Restart stage"
+
+[node name="RestartAll" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 126.0
+offset_bottom = 87.0
+text = "Back to Stage 1
+"
 
 [node name="Quit" type="Button" parent="."]
 offset_left = 16.0
-offset_top = 56.0
-offset_right = 80.0
-offset_bottom = 87.0
+offset_top = 96.0
+offset_right = 144.0
+offset_bottom = 127.0
 text = "Quit"
+
+[node name="Icon109" type="Sprite2D" parent="."]
+position = Vector2(72, 496)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("4_lhyi7")
 
 [node name="TransitionMessage" type="Control" parent="."]
 layout_mode = 3
@@ -196,9 +228,9 @@ metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="TransitionMessage"]
 layout_mode = 0
-offset_left = -10.0
+offset_left = -63.0
 offset_top = -344.0
-offset_right = 1049.0
+offset_right = 1102.0
 offset_bottom = 320.0
 color = Color(0.298039, 0.298039, 0.298039, 1)
 
@@ -237,19 +269,20 @@ vertical_alignment = 1
 
 [node name="Line4" type="Label" parent="TransitionMessage"]
 layout_mode = 0
-offset_left = 400.0
+offset_left = 21.0
 offset_top = 168.0
-offset_right = 647.0
+offset_right = 1009.0
 offset_bottom = 216.0
-text = "Next Stage will begin in seconds"
+text = "Next Stage will begin in 5 seconds"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_down" from="hero_move_1" to="." method="_on_hero_move_1"]
-[connection signal="button_down" from="hero_move_2" to="." method="_on_hero_move_2"]
-[connection signal="button_down" from="hero_move_3" to="." method="_on_hero_move_3"]
-[connection signal="button_down" from="villain_move_1" to="." method="_on_villain_move_1"]
-[connection signal="button_down" from="villain_move_2" to="." method="_on_villain_move_2"]
-[connection signal="button_down" from="villain_move_3" to="." method="_on_villain_move_3"]
+[connection signal="button_down" from="HeroButtons/hero_move_1" to="." method="_on_hero_move_1"]
+[connection signal="button_down" from="HeroButtons/hero_move_2" to="." method="_on_hero_move_2"]
+[connection signal="button_down" from="HeroButtons/hero_move_3" to="." method="_on_hero_move_3"]
+[connection signal="button_down" from="VillainButtons/villain_move_1" to="." method="_on_villain_move_1"]
+[connection signal="button_down" from="VillainButtons/villain_move_2" to="." method="_on_villain_move_2"]
+[connection signal="button_down" from="VillainButtons/villain_move_3" to="." method="_on_villain_move_3"]
 [connection signal="button_down" from="Reload" to="." method="_on_reload_button_down"]
+[connection signal="button_down" from="RestartAll" to="." method="_on_restart_all_button_down"]
 [connection signal="button_down" from="Quit" to="." method="_on_quit_button_down"]
