@@ -293,6 +293,7 @@ func enable_buttons_villain():
 # Character movesets ###########################################################
 # Buttons for the Hero moveset 
 func _on_hero_move_1(): # Weak attack
+	$HeroButtons/SfxHero1.play()
 	actor = "hero"
 	health_damage = 2
 	stamina_cost = 1
@@ -302,6 +303,7 @@ func _on_hero_move_1(): # Weak attack
 		enable_buttons_villain()
 	check_damage()
 func _on_hero_move_2(): # Strong attack
+	$HeroButtons/SfxHero2.play()
 	actor = "hero"
 	health_damage = 4
 	stamina_damage = 1
@@ -312,6 +314,7 @@ func _on_hero_move_2(): # Strong attack
 		enable_buttons_villain()
 	check_damage()
 func _on_hero_move_3(): # Heal self
+	$HeroButtons/SfxHero3.play()
 	actor = "hero"
 	health_regen = 2
 	stamina_cost = 2
@@ -323,6 +326,7 @@ func _on_hero_move_3(): # Heal self
 
 # Buttons for the Villain moveset 
 func _on_villain_move_1(): # Strong attack
+	$VillainButtons/SfxVillain1.play()
 	actor = "villain"
 	health_damage = 3
 	stamina_cost = 3
@@ -332,6 +336,7 @@ func _on_villain_move_1(): # Strong attack
 		enable_buttons_hero()
 	check_damage()
 func _on_villain_move_2(): # Kamikaze attack
+	$VillainButtons/SfxVillain2.play()
 	actor = "villain"
 	health_regen = -3
 	health_damage = 5
@@ -342,6 +347,7 @@ func _on_villain_move_2(): # Kamikaze attack
 		enable_buttons_hero()
 	check_damage()
 func _on_villain_move_3(): # Regenerate stamina
+	$VillainButtons/SfxVillain3.play()
 	actor = "villain"
 	stamina_cost = -6
 	blink_villain(default_blink_duration*3, 1)

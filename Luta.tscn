@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ibw58h7hq5vq"]
+[gd_scene load_steps=23 format=3 uid="uid://ibw58h7hq5vq"]
 
 [ext_resource type="Script" path="res://Luta.gd" id="1_c3j2y"]
 [ext_resource type="PackedScene" uid="uid://dlftagrqi65gd" path="res://hero.tscn" id="2_7exsv"]
@@ -7,14 +7,20 @@
 [ext_resource type="Texture2D" uid="uid://bhh3bm0qyi3k8" path="res://game assets/Icon_Damage_t.png" id="5_gbxq0"]
 [ext_resource type="Texture2D" uid="uid://bcwg6d24m0ei3" path="res://game assets/Icon.3_24.png" id="5_iyrs7"]
 [ext_resource type="Texture2D" uid="uid://hw7gcr0i0etf" path="res://game assets/Icon_Stamina_t.png" id="6_nhtgo"]
+[ext_resource type="AudioStream" uid="uid://fj2n1v8ie7ds" path="res://game assets/sfx_thrust_edit.wav" id="6_rbbgl"]
 [ext_resource type="Texture2D" uid="uid://ct4vvd3j51chx" path="res://game assets/Icon.6_49.png" id="7_ifxy2"]
 [ext_resource type="Texture2D" uid="uid://b7d3a20ge0lb8" path="res://game assets/Icons8_09.png" id="8_jd8vp"]
 [ext_resource type="Texture2D" uid="uid://1vlgptfdi88b" path="res://game assets/Icon_heal_t.png" id="9_5lwfx"]
+[ext_resource type="AudioStream" uid="uid://d1sll38gd7ts4" path="res://game assets/sfx_holy_edit.wav" id="9_pwlk0"]
 [ext_resource type="Texture2D" uid="uid://chsha6jt3bu13" path="res://game assets/Icon.4_29.png" id="9_t5ody"]
+[ext_resource type="AudioStream" uid="uid://s8ies41lmhb" path="res://game assets/sfx_heal_edit.wav" id="11_41bcb"]
 [ext_resource type="Texture2D" uid="uid://cm15kyjablgcd" path="res://game assets/EPICNESS icon.png" id="11_u2kvt"]
 [ext_resource type="Texture2D" uid="uid://icmm41tjg5f6" path="res://game assets/Icon.4_38.png" id="12_n1hy3"]
 [ext_resource type="Texture2D" uid="uid://c0euyq7if0tia" path="res://game assets/Icon_heal_stamina_t.png" id="13_kbqhc"]
+[ext_resource type="AudioStream" uid="uid://bxpdqf5yy1cpq" path="res://game assets/sfx_breath_edit.wav" id="15_snnk4"]
 [ext_resource type="Texture2D" uid="uid://d1ylqcya55xgk" path="res://game assets/Icon_health_t.png" id="15_wwhq2"]
+[ext_resource type="AudioStream" uid="uid://vxbfdvl3qhj7" path="res://game assets/sfx_explosion_edit.wav" id="16_iif5o"]
+[ext_resource type="AudioStream" uid="uid://cglw3rmn2cgle" path="res://game assets/sfx_absorb_edit.wav" id="20_jxqr6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2e5rq"]
 
@@ -73,6 +79,9 @@ offset_bottom = 382.0
 text = "Swift Thrust  "
 alignment = 2
 
+[node name="SfxHero1" type="AudioStreamPlayer2D" parent="HeroButtons"]
+stream = ExtResource("6_rbbgl")
+
 [node name="Icon626" type="Sprite2D" parent="HeroButtons"]
 modulate = Color(0.960784, 0.980392, 0.266667, 1)
 position = Vector2(80, 352)
@@ -105,6 +114,9 @@ offset_right = 256.0
 offset_bottom = 478.0
 text = "Holy Slash  "
 alignment = 2
+
+[node name="SfxHero2" type="AudioStreamPlayer2D" parent="HeroButtons"]
+stream = ExtResource("9_pwlk0")
 
 [node name="Icon324" type="Sprite2D" parent="HeroButtons"]
 modulate = Color(0.960784, 0.980392, 0.266667, 1)
@@ -168,6 +180,9 @@ offset_right = 256.0
 offset_bottom = 574.0
 text = "Healing Light  "
 alignment = 2
+
+[node name="SfxHero3" type="AudioStreamPlayer2D" parent="HeroButtons"]
+stream = ExtResource("11_41bcb")
 
 [node name="Icons809" type="Sprite2D" parent="HeroButtons"]
 modulate = Color(0.960784, 0.980392, 0.266667, 1)
@@ -262,6 +277,9 @@ position = Vector2(938.16, 396.16)
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("6_nhtgo")
 
+[node name="SfxVillain1" type="AudioStreamPlayer2D" parent="VillainButtons"]
+stream = ExtResource("15_snnk4")
+
 [node name="villain_move_2" type="Button" parent="VillainButtons"]
 layout_mode = 0
 offset_left = 896.0
@@ -270,6 +288,9 @@ offset_right = 1096.0
 offset_bottom = 478.0
 text = "  Deadly Blast"
 alignment = 0
+
+[node name="SfxVillain2" type="AudioStreamPlayer2D" parent="VillainButtons"]
+stream = ExtResource("16_iif5o")
 
 [node name="Icon429" type="Sprite2D" parent="VillainButtons"]
 modulate = Color(0.960784, 0.980392, 0.266667, 1)
@@ -411,6 +432,9 @@ modulate = Color(0.690196, 0.0627451, 0.0431373, 1)
 position = Vector2(1028.32, 566.32)
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("13_kbqhc")
+
+[node name="SfxVillain3" type="AudioStreamPlayer2D" parent="VillainButtons"]
+stream = ExtResource("20_jxqr6")
 
 [node name="Turns" type="Label" parent="."]
 modulate = Color(0.960784, 0.980392, 0.266667, 1)
