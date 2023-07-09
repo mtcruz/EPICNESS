@@ -32,6 +32,8 @@ var time_started
 var time_now = 0
 var time_transition = 0
 var time_elapsed = 0
+# Animations
+var default_blink_duration = 0.033
 
 
 func _ready():
@@ -294,6 +296,7 @@ func _on_hero_move_1(): # Weak attack
 	actor = "hero"
 	health_damage = 2
 	stamina_cost = 1
+	blink_villain(default_blink_duration, 4)
 	if current_stage == 3:
 		disable_buttons_hero()
 		enable_buttons_villain()
@@ -303,6 +306,7 @@ func _on_hero_move_2(): # Strong attack
 	health_damage = 4
 	stamina_damage = 1
 	stamina_cost = 3
+	blink_villain(default_blink_duration, 4)
 	if current_stage == 3:
 		disable_buttons_hero()
 		enable_buttons_villain()
@@ -311,6 +315,7 @@ func _on_hero_move_3(): # Heal self
 	actor = "hero"
 	health_regen = 2
 	stamina_cost = 2
+	blink_hero(default_blink_duration*3, 1)
 	if current_stage == 3:
 		disable_buttons_hero()
 		enable_buttons_villain()
@@ -321,6 +326,7 @@ func _on_villain_move_1(): # Strong attack
 	actor = "villain"
 	health_damage = 3
 	stamina_cost = 3
+	blink_hero(default_blink_duration, 4)
 	if current_stage == 3:
 		disable_buttons_villain()
 		enable_buttons_hero()
@@ -330,6 +336,7 @@ func _on_villain_move_2(): # Kamikaze attack
 	health_regen = -3
 	health_damage = 5
 	stamina_cost = 6
+	blink_hero(default_blink_duration, 4)
 	if current_stage == 3:
 		disable_buttons_villain()
 		enable_buttons_hero()
@@ -337,10 +344,35 @@ func _on_villain_move_2(): # Kamikaze attack
 func _on_villain_move_3(): # Regenerate stamina
 	actor = "villain"
 	stamina_cost = -6
+	blink_villain(default_blink_duration*3, 1)
 	if current_stage == 3:
 		disable_buttons_villain()
 		enable_buttons_hero()
 	check_damage()
+
+
+func blink_villain(duration, times):
+	for n in times: #Blink villain
+		$Villain.visible = false
+		$VillainHealth.visible = false
+		$VillainStamina.visible = false
+		await get_tree().create_timer(duration).timeout
+		$Villain.visible = true
+		$VillainHealth.visible = true
+		$VillainStamina.visible = true
+		await get_tree().create_timer(duration).timeout
+
+
+func blink_hero(duration, times):
+	for n in times: #Blink villain
+		$Hero.visible = false
+		$HeroHealth.visible = false
+		$HeroStamina.visible = false
+		await get_tree().create_timer(duration).timeout
+		$Hero.visible = true
+		$HeroHealth.visible = true
+		$HeroStamina.visible = true
+		await get_tree().create_timer(duration).timeout
 
 
 # etc ##########################################################################
